@@ -16,12 +16,7 @@ def translation(coords: list, tx: int, ty: int) -> list:
     A função opera realizando uma soma dos fatores de translação para cada vértice da figura
     """
 
-    new_coords = []
-
-    for c in coords:
-        new_coords.append((c[0] + tx, c[1] + ty))
-
-    return new_coords
+    return [(c[0] + tx, c[1] + ty) for c in coords]
 
 
 def scale(coords: list, sx: int, sy: int) ->list:
@@ -39,12 +34,7 @@ def scale(coords: list, sx: int, sy: int) ->list:
     Opera multiplicando cada coordenada dos vértices da figura pelos fatores de escala
     """
 
-    new_coords = []
-
-    for c in coords:
-        new_coords.append(c[0] * sx, c[1] * sy)
-
-    return new_coords
+    return [(c[0] * sx, c[1] * sy) for c in coords]
 
 
 def rotation(coords: list, angle: float, pivot: tuple = (0,0)) -> list:

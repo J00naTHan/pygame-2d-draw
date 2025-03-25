@@ -7,7 +7,7 @@ if __name__ == "__main__":
     pygame.init()
 
     screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT))
-    pygame.display.set_caption("Cena 2D Desordenada")
+    pygame.display.set_caption("Cena 2D")
 
     clock = pygame.time.Clock()
 
@@ -18,5 +18,14 @@ if __name__ == "__main__":
                 sys.exit()
 
         coord_plane(screen)
+
+        #triangle = pygame.draw.polygon(screen, c.RED, [(), (), ()])
+        #rectangle = pygame.draw.polygon(screen, c.GRAY, [(), (), (), ()])
+        #trapezium = pygame.draw.polygon(screen, c.RED, [(), (), (), ()])
+        #trect1 = pygame.draw.polygon(screen, c.BLUE, [(), (), ()])
+        #trect2 = pygame.draw.polygon(screen, c.BLUE, [(), (), ()])
+        circle = pygame.draw.circle(screen, c.TURQUOISE, (57, 548), 30)
+
         pygame.display.flip()
+
         clock.tick(60)
