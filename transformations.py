@@ -1,4 +1,4 @@
-import numpy as np
+import math
 
 
 def translation(coords: list, tx: int, ty: int) -> list:
@@ -56,19 +56,19 @@ def rotation(coords: list, angle: float, pivot: tuple = (0,0)) -> list:
     """
 
     new_coords = []
-    r = np.radians(angle)
-    try:
-        coords.remove(pivot)
-    except ValueError:
-        pass
 
-    R = np.array([[np.cos(r), -np.sin(r)],
-                      [np.sin(r), np.cos(r)]])
+    r = math.radians(angle)
+    cos_r = math.cos(r)
+    sin_r = math.sin(r)
+    pivot_x, pivot_y = pivot
 
-    for c in coords:
-        translated = np.array((c[0] - pivot[0], c[1] - pivot[1]))
-        rotated = tuple(R @ translated)
-        new_c = (rotated[0] + pivot[0], rotated[1] + pivot[1])
-        new_coords.append(new_c)
+    for x, y in coords:
+        translated_x = x - pivot_x
+        translated_y = y - pivot_y
+
+        rotated_x = translated_x * cos_r - translated_y * sin_r
+        rotated_y = translated_x * sin_r + translated_y * cos_r
+
+        new_coords.append((rotated_x + pivot_x, rotated_y + pivot_y))
 
     return new_coords
