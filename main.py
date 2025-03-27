@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     original_coords = {
         "tri": [(235, 469), (275, 519), (315, 469)],
-        "rect": [(346, 340), (346, 260), (546, 260), (546, 340)],
+        "rect": [(246, 440), (246, 360), (446, 360), (446, 440)],
         "trap": [(50, 50), (70, 70), (110, 70), (130, 50)],
         "tr1": [(786, 135), (736, 50), (736, 135)],
         "tr2": [(446, 578), (471, 578), (471, 578 - 42.5)],
@@ -36,18 +36,30 @@ if __name__ == "__main__":
                     if not transform_active:
                         current_coords = original_coords.copy()
                     else:
-                        current_coords["rect"] = scale(original_coords["rect"], 0.5, 2.5)
-                        current_coords["rect"] = translation(current_coords["rect"], 100, -150)
-                        current_coords["tri"] = scale(original_coords["tri"], 1.8, 1.8)
-                        current_coords["tri"] = translation(current_coords["tri"], 100, -280)
-                        current_coords["trap"] = rotation(original_coords["trap"], 180, (90, 60))
-                        current_coords["trap"] = scale(current_coords["trap"], 2.5, 1)
-                        current_coords["trap"] = translation(current_coords["trap"], 100, -50)
-                        current_coords["tr1"] = scale(original_coords["tr1"], 0.8, 3)
-                        current_coords["tr1"] = translation(current_coords["tr1"], 70, 100)
-                        current_coords["tr2"] = scale(original_coords["tr2"], 0.8, 3)
-                        current_coords["tr2"] = translation(current_coords["tr2"], 130, 100)
-                        current_coords["cir"] = translation(original_coords["cir"], 200, -200)
+                        # corpo
+                        current_coords["rect"] = rotation(original_coords["rect"], 120, original_coords["rect"][3])
+                        current_coords["rect"] = translation(current_coords["rect"], 0, -100)
+
+                        # ponta
+                        current_coords["tri"] = scale(original_coords["tri"], 1, 1.5)
+                        current_coords["tri"] = rotation(current_coords["tri"], 328, current_coords["tri"][1])
+                        current_coords["tri"] = translation(current_coords["tri"], 343, -570)
+
+                        # propulsor
+                        current_coords["trap"] = rotation(original_coords["trap"], 31, (90, 60))
+                        current_coords["trap"] = translation(current_coords["trap"], 386, 308)
+
+                        # barbatana 1
+                        current_coords["tr1"] = rotation(original_coords["tr1"], 31, original_coords["tr1"][1])
+                        current_coords["tr1"] = translation(current_coords["tr1"], -195, 280)
+
+                        # barbatana 2
+                        current_coords["tr2"] = rotation(original_coords["tr2"], 31, original_coords["tr2"][1])
+                        current_coords["tr2"] = scale(current_coords["tr2"], 2, 2)
+                        current_coords["tr2"] = translation(current_coords["tr2"], -512, -788)
+
+                        # cabine
+                        current_coords["cir"] = translation(original_coords["cir"], 503, -320)
 
         screen.fill(c.BLACK)
 
